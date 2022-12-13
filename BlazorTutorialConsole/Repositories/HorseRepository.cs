@@ -43,6 +43,23 @@ namespace BlazorTutorialConsole.Repositories
             con.Close();
         }
 
+
+        public void CreateAvoid(Horse horse) 
+        { 
+        SqlConnection con = new SqlConnection(Helper.ConnectionString);
+            SqlCommand cmd = new SqlCommand($"INSERT into horse values(@age, @name, @id)", con);
+
+            cmd.Parameters.AddWithValue("@Age", horse.Age);
+            cmd.Parameters.AddWithValue("@Age", horse.Name+"'");
+            cmd.Parameters.AddWithValue("@Age", horse.SamuraiId);
+
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+
         public void delete(int horseId)
         {
             SqlConnection con = new SqlConnection(Helper.ConnectionString);
